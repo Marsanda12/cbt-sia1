@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Answer extends Model
 {
     //trait
-    use HasFactory, SoftDeletes;
+    use HasFactory ;
+    //SoftDeletes;
 
     protected $guarded = [];
 
