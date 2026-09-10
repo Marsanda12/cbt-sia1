@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Students\Tables;
+namespace App\Filament\Resources\Exams\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -13,36 +13,36 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class StudentsTable
+class ExamsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('No')
-                    ->rowIndex()->width(40),
-                TextColumn::make('reg_year')
-                    ->label('Stambuk')
-                    ->sortable(),
-                TextColumn::make('nis')
-                    ->label('NIS')
+                TextColumn::make('title')
+                    ->label('Jenis Ujian')
                     ->searchable(),
-                TextColumn::make('name')
-                    ->label('Nama')
-                    ->searchable(),
-                TextColumn::make('gender')
-                    ->label('JK')
-                    ->formatStateUsing(fn (bool $state) => $state
-                        ? 'Laki-laki'
-                        : 'Perempuan'
-                    ),
-                TextColumn::make('status')
-                    ->badge()
+                TextColumn::make('duration')
+                    ->label('Durasi Ujian')
+                    ->numeric()
                     ->sortable(),
-                TextColumn::make('deleted_at')
+                TextColumn::make('threshold')
+                    ->label('Batas Nilai')
+                    ->numeric()
+                    ->sortable(),
+                IconColumn::make('exact_time')
+                    ->label('Waktu Ujian')
+                    ->boolean(),
+                TextColumn::make('started_at')
+                    ->label('Waktu Mulai')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
+                TextColumn::make('expired_at')
+                    ->label('Waktu Berakhir')
+                    ->dateTime()
+                    ->sortable(),
+                IconColumn::make('is_available')
+                    ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
